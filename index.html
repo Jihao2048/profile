@@ -4,40 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
-    <link rel="icon" href="https://static.kivo.wiki/images/gallery/22/634115952.png" type="image/png">
+    <link rel="icon" href="https://www.jihao.icu/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="content-container">
-        <img src="profilepicture.jpg" class="profile-pic" alt="个人头像">
-        <h1 class="profile-title">依一  mclvlc</h1>
-        <p class="profile-subtitle">高三生</p>
+        <img src="pictre.png" class="profile-pic" alt="个人头像">
+        <h1 class="profile-title">名称  英文名</h1>
+        <p class="profile-subtitle">简介，爱好......</p>
     </div>
-
     <button class="music-btn" onclick="playAudio()">🎵</button>
-
-    <!-- 新添加的项目按钮 - 右对齐 -->
     <div class="projects-container">
-        <button class="project-btn" onclick="window.open('https://api.toubiec.cn/wyapi.html', '_blank')">网易云音乐解析</button>
-        <button class="project-btn" onclick="window.open('https://mclvlc.github.io/vip?url=', '_blank')">自制电影解析</button>
-        <button class="project-btn" onclick="window.open('https://mclvlc.github.io/share', '_blank')">表白网站列表</button>
+        <button class="project-btn" onclick="window.open('https://example.com/', '_blank')">项目1</button>
+        <button class="project-btn" onclick="window.open('https://example.com/', '_blank')">项目2</button>
+        <button class="project-btn" onclick="window.open('https://example.com/', '_blank')">项目3</button>
     </div>
-
-    <!-- 新添加的社交媒体按钮 - 右对齐 -->
     <div class="social-container">
-        <button class="social-btn" onclick="window.open('https://github.com/mclvlc','_blank')">GitHub</button>
-        <button class="social-btn" onclick="window.open('https://v.douyin.com/eDvF5aJ12cM/','_blank')">Aweme</button>
+        <button class="social-btn" onclick="window.open('https://example.com/','_blank')">链接1</button>
+        <button class="social-btn" onclick="window.open('https://example.com/','_blank')">链接2</button>
     </div>
-
-    <!-- 新添加的随机文案 - 右对齐 -->
     <div class="quote-container">
         <div class="quote-text" id="quoteText">正在加载随机文案...</div>
     </div>
-
-    <audio id="bgm" src="https://api.injahow.cn/meting/?type=url&id=2093257373" style="display: none;"></audio>
-
+    <audio id="bgm" src="https://api.injahow.cn/meting/?type=url&id=1974443814" style="display: none;"></audio>
     <script>
-        // 获取随机文案
         async function fetchRandomQuote() {
             try {
                 const proxyUrl = 'https://api.allorigins.win/raw?url=';
@@ -47,24 +37,23 @@
                         'X-Requested-With': 'XMLHttpRequest'
                     }
                 });
-
                 if (!response.ok) throw new Error(`HTTP错误 ${response.status}`);
-                
                 const data = await response.json();
                 document.getElementById('quoteText').textContent = data.text || data.content;
             } catch (error) {
                 console.error('API请求失败:', error);
-                document.getElementById('quoteText').innerHTML = `错误: ${error.message}<br>请刷新重试或检查网络连接`;
+                let errorMessage = error.message;
+                if (errorMessage.includes('Failed to fetch')) {
+                    document.getElementById('quoteText').innerHTML = '请求被阻止 (CORS错误)<br>请刷新页面。';
+                } else {
+                    document.getElementById('quoteText').innerHTML = `错误: ${errorMessage}<br>请刷新重试或检查网络连接`;
+                }
             }
         }
-
-        // 页面加载时获取随机文案
         window.addEventListener('load', fetchRandomQuote);
-
         function playAudio() {
             const audio = document.getElementById('bgm');
-            const btn = event.currentTarget;
-            
+            const btn = event.currentTarget;           
             if (audio.paused) {
                 audio.play().then(() => {
                     btn.innerHTML = '⏸️';
@@ -80,7 +69,6 @@
                 btn.style.background = 'linear-gradient(135deg, #2196F3, #1976D2)';
             }
         }
-
         document.addEventListener('click', function() {
             document.getElementById('bgm').muted = false;
         });

@@ -31,7 +31,7 @@
         async function fetchRandomQuote() {
             try {
                 const proxyUrl = 'https://api.allorigins.win/raw?url=';
-                const response = await fetch(proxyUrl + encodeURIComponent(`https://cyapi.top/API/yiyan.php?type=json&timestamp=${Date.now()}`), {
+                const response = await fetch(proxyUrl + encodeURIComponent(`https://api.mir6.com/api/yulu?txt=4&type=json&timestamp=${Date.now()}`), {
                     headers: {
                         'Accept': 'application/json',
                         'X-Requested-With': 'XMLHttpRequest'
@@ -74,5 +74,4 @@
         });
     </script>
 </body>
-
 </html>
